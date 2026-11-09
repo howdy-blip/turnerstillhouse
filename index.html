@@ -123,6 +123,27 @@
   }
   .event:hover .tix { background: var(--white); color: var(--black); border-color: var(--white); }
 
+  /* Promo box (date-limited) */
+  .promo { border-radius: 14px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.03); padding: 24px 22px 22px; }
+  .promo[hidden] { display: none; }
+  .promo .kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .promo h2 { font-family: var(--head); font-weight: 400; font-size: clamp(30px, 8vw, 38px); line-height: 1; margin-top: 8px; }
+  .promo h2 span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .promo .lede { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.85); }
+  .tiers { list-style: none; display: grid; gap: 8px; margin-top: 16px; }
+  .tiers li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 10px; background: rgba(255,255,255,.05); font-size: 15px; letter-spacing: .04em; }
+  .tiers li b { font-family: var(--head); font-weight: 400; font-size: 22px; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .promo .note { margin-top: 12px; font-size: 14px; }
+  .code { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; padding: 10px 10px 10px 16px; border-radius: 10px; border: 1px dashed rgba(255,255,255,.45); }
+  .code span { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .code strong { display: block; font-family: var(--head); font-weight: 400; font-size: 24px; letter-spacing: .06em; color: var(--white); }
+  .copy { flex: none; cursor: pointer; border: 0; border-radius: 99px; padding: 10px 16px; background: var(--white); color: var(--black); font-family: var(--body); font-weight: 500; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; transition: filter .2s ease; }
+  .copy:hover { filter: brightness(.9); }
+  .copy:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+  .promo .btn { margin-top: 14px; }
+  .promo .fine { margin-top: 14px; font-size: 12px; line-height: 1.45; color: rgba(255,255,255,.5); }
+  .promo .sign { margin-top: 12px; font-size: 14px; font-style: italic; color: rgba(255,255,255,.75); }
+
   .social { display: flex; justify-content: center; gap: 14px; margin-top: 34px; }
   .social a {
     display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%;
@@ -194,6 +215,29 @@
       </div>
     </details>
 
+    <!-- BLACK FRIDAY: shows from data-start, hides after data-end (Melbourne/Hobart time) -->
+    <section class="promo" id="promo-bf" data-start="2026-11-12T09:00:00+11:00" data-end="2026-11-30T23:59:59+11:00" hidden aria-labelledby="bf-title">
+      <p class="kicker">Black Friday</p>
+      <h2 id="bf-title">Spend &amp; <span>Save</span></h2>
+      <p class="lede">Spend more, save more on Three Cuts Gin, Rosevears Whisky, gifts and merch:</p>
+      <ul class="tiers">
+        <li>Spend $100 <b>15% off</b></li>
+        <li>Spend $200 <b>20% off</b></li>
+        <li>Spend $300 <b>25% off</b></li>
+      </ul>
+      <p class="note">Free delivery on all orders over $100.</p>
+      <div class="code">
+        <div><span>Use code at checkout</span><strong>BLK2026</strong></div>
+        <button class="copy" type="button" data-code="BLK2026">Copy</button>
+      </div>
+      <a class="btn" href="https://turnerstillhouse.com/shop/" target="_blank" rel="noopener">
+        <span>Shop the Sale</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <p class="fine">Excludes Rosevears Single Apera Cask Matured Single Malt, Gin Club Membership, Gift Cards, and Tours &amp; Tastings.</p>
+      <p class="sign">Grain to glass, Tamar Valley made, now with a little extra incentive to stock the bar.</p>
+    </section>
+
     <p class="label">Our Spirits</p>
     <a class="btn" href="https://turnerstillhouse.com/" target="_blank" rel="noopener">
       <span>Turner Stillhouse</span>
@@ -256,6 +300,22 @@
         .forEach(function (el) { list.appendChild(el); });
     document.getElementById('event-count').textContent = live.length;
     if (!live.length) document.getElementById('events').remove();
+  })();
+</script>
+<script>
+  // Date-limited promos: show between data-start and data-end.
+  (function () {
+    var now = Date.now();
+    document.querySelectorAll('.promo[data-start]').forEach(function (el) {
+      var start = Date.parse(el.dataset.start), end = Date.parse(el.dataset.end);
+      if (now >= start && now <= end) el.hidden = false; else el.remove();
+    });
+    document.querySelectorAll('.copy').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.code).then(done, done); else done();
+      });
+    });
   })();
 </script>
 </body>
