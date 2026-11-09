@@ -1,0 +1,99 @@
+/* Shared styles for every Turner Stillhouse link page.
+   Each page sets its own brand via the CSS variables in its <style> block. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  min-height: 100vh; background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { position: relative; z-index: 1; width: 100%; max-width: 520px; margin: 0 auto; padding: 56px 20px 40px; }
+
+header { text-align: center; margin-bottom: 36px; }
+.logo { display: block; height: auto; margin: 0 auto 28px; }
+.logo-fallback { font-family: var(--head); font-size: 34px; margin-bottom: 20px; }
+h1 { font-family: var(--head); font-weight: var(--head-weight, 400); font-size: clamp(30px, 8vw, 40px); line-height: 1.02; }
+.hl { background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tag { margin-top: 12px; color: var(--muted); font-size: 15px; letter-spacing: .02em; }
+
+.links { display: grid; gap: 12px; }
+.label { margin: 26px 2px 2px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+
+/* Buttons */
+.btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-height: 62px; padding: 14px 22px; border-radius: 14px;
+  background: var(--grad); color: var(--btn-fg);
+  font-weight: 500; font-size: 15px; letter-spacing: .14em; text-transform: uppercase;
+  transition: filter .3s ease, transform .2s ease, box-shadow .3s ease;
+  box-shadow: var(--btn-shadow, none);
+}
+.btn .arrow { flex: none; width: 18px; height: 18px; transition: transform .25s ease; }
+.btn:hover, .btn:focus-visible { filter: brightness(1.1) saturate(1.05); transform: translateY(-2px); }
+.btn:hover .arrow, .btn:focus-visible .arrow { transform: translateX(4px); }
+.btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); box-shadow: none; }
+.btn.ghost:hover, .btn.ghost:focus-visible { filter: none; background: var(--card); border-color: var(--fg); }
+
+/* Outlined box (events, promos, features) */
+.box { border-radius: 14px; border: 1px solid var(--line); background: var(--card); }
+
+/* Ticketed events accordion */
+.events { overflow: hidden; }
+.events summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-height: 62px; padding: 14px 22px; font-weight: 500; font-size: 15px; letter-spacing: .14em; text-transform: uppercase;
+}
+.events summary > span { flex: 1; min-width: 0; }
+.events summary::-webkit-details-marker { display: none; }
+.events summary:hover { background: var(--card); }
+.events summary:focus-visible { outline: 2px solid var(--fg); outline-offset: -2px; }
+.count { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 7px; margin-left: 10px; border-radius: 99px; background: var(--chip-bg); color: var(--chip-fg); font-size: 12px; letter-spacing: 0; vertical-align: middle; }
+.chev { flex: none; width: 18px; height: 18px; transition: transform .3s ease; }
+.events[open] .chev { transform: rotate(180deg); }
+.event-list { display: grid; gap: 10px; padding: 4px 12px 12px; }
+.event { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 14px; padding: 12px; border-radius: 10px; background: var(--card); transition: background .25s ease, transform .2s ease; }
+.event:hover, .event:focus-visible { background: var(--card-hover); transform: translateY(-1px); }
+.event:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.date { display: grid; place-items: center; align-content: center; height: 58px; border-radius: 8px; background: var(--chip-bg); color: var(--chip-fg); text-align: center; line-height: 1; }
+.date b { font-family: var(--head); font-weight: var(--head-weight, 400); font-size: 24px; }
+.date i { font-style: normal; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; margin-top: 4px; }
+.event h3 { font-family: var(--head); font-weight: var(--head-weight, 400); font-size: 18px; line-height: 1.15; }
+.event p { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+.tix { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 8px 12px; border-radius: 99px; border: 1px solid var(--line); white-space: nowrap; }
+.event:hover .tix { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+/* Promo / feature boxes */
+.promo { padding: 24px 22px 22px; }
+.kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.promo h2 { font-family: var(--head); font-weight: var(--head-weight, 400); font-size: clamp(30px, 8vw, 38px); line-height: 1; margin-top: 8px; }
+.lede { margin-top: 10px; font-size: 15px; }
+.tiers { list-style: none; display: grid; gap: 8px; margin-top: 16px; }
+.tiers li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 10px; background: var(--card); font-size: 15px; letter-spacing: .04em; }
+.tiers li b { font-family: var(--head); font-weight: var(--head-weight, 400); font-size: 22px; line-height: 1; white-space: nowrap; }
+.note { margin-top: 12px; font-size: 14px; }
+.code { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; padding: 10px 10px 10px 16px; border-radius: 10px; border: 1px dashed var(--line); }
+.code span { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.code strong { display: block; font-family: var(--head); font-weight: var(--head-weight, 400); font-size: 24px; letter-spacing: .06em; }
+.copy { flex: none; cursor: pointer; border: 0; border-radius: 99px; padding: 10px 16px; background: var(--fg); color: var(--bg); font-family: var(--body); font-weight: 500; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.copy:hover { filter: brightness(.9); }
+.copy:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.promo .btn { margin-top: 14px; }
+.fine { margin-top: 14px; font-size: 12px; line-height: 1.45; color: var(--muted); }
+.sign { margin-top: 12px; font-size: 14px; font-style: italic; color: var(--muted); }
+
+.social { display: flex; justify-content: center; gap: 14px; margin-top: 34px; }
+.social a { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); transition: background .25s ease, color .25s ease; }
+.social a:hover, .social a:focus-visible { background: var(--grad); color: var(--btn-fg); border-color: transparent; }
+.social svg { width: 20px; height: 20px; fill: currentColor; }
+footer { text-align: center; margin-top: 30px; font-size: 12px; color: var(--muted); letter-spacing: .06em; }
+
+@media (max-width: 400px) {
+  .wrap { padding: 44px 16px 32px; }
+  .btn, .events summary { padding: 14px 18px; font-size: 14px; letter-spacing: .12em; }
+  .event { grid-template-columns: 52px 1fr; }
+  .date { height: 52px; }
+  .tix { grid-column: 2; justify-self: start; padding: 6px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
