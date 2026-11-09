@@ -27,7 +27,24 @@
     --head: "Roboto Condensed", "Arial Narrow", Arial, sans-serif; --head-weight: 700;
     --body: "Roboto", Arial, sans-serif;
   }
-  body { background: linear-gradient(180deg, #99d3f4 0%, #b9e1f8 55%, #d6eefb 100%); }
+  body { background: #99d3f4; }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(60% 40% at 85% 0%, rgba(255,0,153,.22), transparent 70%),
+      radial-gradient(55% 35% at 0% 18%, rgba(255,255,255,.55), transparent 70%),
+      radial-gradient(70% 45% at 100% 62%, rgba(255,255,255,.4), transparent 70%),
+      radial-gradient(60% 40% at 0% 85%, rgba(255,0,153,.14), transparent 70%),
+      linear-gradient(180deg, #8fcdf2 0%, #a9dbf7 40%, #c4e6fa 75%, #9ccff0 100%);
+  }
+  /* fine grain texture */
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .22; mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.32 0 0 0 0 0.35 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .box { -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2); }
+  .btn:not(.ghost) { background: linear-gradient(115deg, #5b6168 0%, #4d5259 45%, #3a3e44 100%); }
+  .club .btn { background: linear-gradient(115deg, #ff0099 0%, #ff2fa8 50%, #e6008a 100%); }
   .logo { width: 150px; }
   h1 { text-transform: uppercase; letter-spacing: .01em; }
   .tag { color: var(--charcoal); }
