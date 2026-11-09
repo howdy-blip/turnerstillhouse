@@ -50,7 +50,7 @@ h1 { font-family: var(--head); font-weight: var(--head-weight, 400); font-size: 
 .events summary:hover { background: var(--card); }
 .events summary:focus-visible { outline: 2px solid var(--fg); outline-offset: -2px; }
 .count { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 7px; margin-left: 10px; border-radius: 99px; background: var(--chip-bg); color: var(--chip-fg); font-size: 12px; letter-spacing: 0; vertical-align: middle; }
-.chev { flex: none; width: 18px; height: 18px; transition: transform .3s ease; }
+.chev { flex: 0 0 18px; width: 18px; height: 18px; overflow: visible; transition: transform .3s ease; }
 .events[open] .chev { transform: rotate(180deg); }
 .event-list { display: grid; gap: 10px; padding: 4px 12px 12px; }
 .event { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 14px; padding: 12px; border-radius: 10px; background: var(--card); transition: background .25s ease, transform .2s ease; }
