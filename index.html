@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Turner Stillhouse | Links</title>
+<meta name="description" content="Turner Stillhouse - Pure Tasmanian spirits from the Tamar Valley. Rosevears Whisky, Three Cuts Gin, experiences and upcoming events.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Turner Stillhouse">
+<meta property="og:description" content="Pure Tasmanian spirits that celebrate the unique and the unexpected.">
+<link rel="icon" href="https://turnerstillhouse.com/wp-content/uploads/2025/04/logo-header.svg">
+<style>
+  /* Brand fonts: drop licensed files into /fonts with these names */
+  @font-face { font-family: "Coolvetica"; src: local("Coolvetica"), local("Coolvetica Rg"), url("fonts/coolvetica.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Brandon"; src: url("fonts/brandon-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Brandon"; src: url("fonts/brandon-medium.woff2") format("woff2"); font-weight: 500 700; font-display: swap; }
+
+  :root {
+    --black: #000000;
+    --red: #e31f2c;
+    --pink: #ff0099;
+    --white: #ffffff;
+    --muted: rgba(255,255,255,.62);
+    --line: rgba(255,255,255,.14);
+    --grad: linear-gradient(115deg, var(--red) 0%, #f0105f 55%, var(--pink) 100%);
+    --head: "Coolvetica", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --body: "Brandon", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    min-height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* soft brand glow behind the header */
+  body::before {
+    content: ""; position: fixed; inset: -20vh -20vw auto; height: 70vh; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(40% 50% at 30% 40%, rgba(227,31,44,.28), transparent 70%),
+      radial-gradient(40% 50% at 72% 30%, rgba(255,0,153,.22), transparent 70%);
+    filter: blur(20px);
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { position: relative; z-index: 1; width: 100%; max-width: 520px; margin: 0 auto; padding: 56px 20px 40px; }
+
+  header { text-align: center; margin-bottom: 36px; }
+  .logo { display: block; width: min(260px, 72%); height: auto; margin: 0 auto 28px; }
+  .logo-fallback { font-family: var(--head); font-size: 34px; letter-spacing: .02em; }
+  h1 {
+    font-family: var(--head); font-weight: 400;
+    font-size: clamp(30px, 8vw, 40px); line-height: 1.02; letter-spacing: -.005em;
+  }
+  h1 span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .tag { margin-top: 12px; color: var(--muted); font-size: 15px; letter-spacing: .02em; }
+
+  .links { display: grid; gap: 12px; }
+
+  /* Gradient buttons */
+  .btn {
+    position: relative; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    min-height: 62px; padding: 14px 22px;
+    border-radius: 14px;
+    background: var(--grad);
+    font-family: var(--body); font-weight: 500; font-size: 15px; letter-spacing: .14em; text-transform: uppercase;
+    transition: filter .3s ease, transform .2s ease, box-shadow .3s ease;
+    box-shadow: 0 6px 24px -10px rgba(255,0,153,.55);
+  }
+  .btn small { display: block; font-size: 12px; letter-spacing: .04em; text-transform: none; font-weight: 400; opacity: .85; margin-top: 2px; }
+  .btn .arrow { flex: none; width: 18px; height: 18px; transition: transform .25s ease; }
+  .btn:hover, .btn:focus-visible { filter: brightness(1.1) saturate(1.05); transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(255,0,153,.7); }
+  .btn:hover .arrow, .btn:focus-visible .arrow { transform: translateX(4px); }
+  .btn:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+  /* Outline variant for secondary links */
+  .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,.35); box-shadow: none; }
+  .btn.ghost:hover, .btn.ghost:focus-visible { filter: none; background: rgba(255,255,255,.06); border-color: var(--white); }
+
+  .label { margin: 26px 2px 2px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+
+  /* Ticketed events accordion */
+  .events { border-radius: 14px; border: 1px solid rgba(255,255,255,.35); overflow: hidden; background: rgba(255,255,255,.03); }
+  .events summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    min-height: 62px; padding: 14px 22px;
+    font-weight: 500; font-size: 15px; letter-spacing: .14em; text-transform: uppercase;
+    transition: background .25s ease;
+  }
+  .events summary::-webkit-details-marker { display: none; }
+  .events summary:hover { background: rgba(255,255,255,.06); }
+  .events summary:focus-visible { outline: 2px solid var(--white); outline-offset: -2px; }
+  .count {
+    display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 7px; margin-left: 10px;
+    border-radius: 99px; background: var(--grad); font-size: 12px; letter-spacing: 0;
+  }
+  .chev { flex: none; width: 18px; height: 18px; transition: transform .3s ease; }
+  .events[open] .chev { transform: rotate(180deg); }
+  .event-list { display: grid; gap: 10px; padding: 4px 12px 12px; }
+  .event {
+    display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 14px;
+    padding: 12px; border-radius: 10px; background: rgba(255,255,255,.05);
+    transition: background .25s ease, transform .2s ease;
+  }
+  .event:hover, .event:focus-visible { background: rgba(255,255,255,.1); transform: translateY(-1px); }
+  .event:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+  .date {
+    display: grid; place-items: center; align-content: center; height: 58px; border-radius: 8px;
+    background: var(--grad); text-align: center; line-height: 1;
+  }
+  .date b { font-family: var(--head); font-weight: 400; font-size: 24px; }
+  .date i { font-style: normal; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; margin-top: 4px; }
+  .event h3 { font-family: var(--head); font-weight: 400; font-size: 18px; line-height: 1.15; }
+  .event p { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+  .event .tix {
+    font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+    padding: 8px 12px; border-radius: 99px; border: 1px solid rgba(255,255,255,.4); white-space: nowrap;
+  }
+  .event:hover .tix { background: var(--white); color: var(--black); border-color: var(--white); }
+
+  .social { display: flex; justify-content: center; gap: 14px; margin-top: 34px; }
+  .social a {
+    display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.35); transition: background .25s ease, border-color .25s ease;
+  }
+  .social a:hover, .social a:focus-visible { background: var(--grad); border-color: transparent; }
+  .social svg { width: 20px; height: 20px; fill: currentColor; }
+
+  footer { text-align: center; margin-top: 30px; font-size: 12px; color: rgba(255,255,255,.45); letter-spacing: .06em; }
+
+  @media (max-width: 400px) {
+    .wrap { padding: 44px 16px 32px; }
+    .btn, .events summary { padding: 14px 18px; font-size: 14px; letter-spacing: .12em; }
+    .event { grid-template-columns: 52px 1fr; }
+    .date { height: 52px; }
+    .event .tix { grid-column: 2; justify-self: start; padding: 6px 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header>
+    <img class="logo" src="https://turnerstillhouse.com/wp-content/uploads/2025/04/logo-header.svg" alt="Turner Stillhouse"
+         onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>Turner Stillhouse</div>'">
+    <h1>Pure Tasmanian <span>Spirits</span></h1>
+    <p class="tag">Celebrating the unique and the unexpected, from the Tamar Valley.</p>
+  </header>
+
+  <nav class="links" aria-label="Turner Stillhouse links">
+
+    <!-- TICKETED EVENTS: add/remove events here. Each hides automatically once its "data-end" time has passed. -->
+    <details class="events" id="events">
+      <summary>
+        <span>Ticketed Events<span class="count" id="event-count">0</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="event-list" id="event-list">
+
+        <a class="event" data-end="2026-11-13T18:30:00+11:00" target="_blank" rel="noopener"
+           href="https://www.eventbrite.com.au/e/rosevears-whisky-tasting-cocktails-backspace-bar-melbourne-tickets-2004274150939">
+          <span class="date"><b>13</b><i>Nov</i></span>
+          <span><h3>Rosevears Whisky Tasting &amp; Cocktails</h3><p>Backspace Bar, Melbourne - 5pm</p></span>
+          <span class="tix">Tickets</span>
+        </a>
+
+        <a class="event" data-end="2026-11-14T18:30:00+11:00" target="_blank" rel="noopener"
+           href="https://tamarvalleywine.com.au/taste-the-tamar">
+          <span class="date"><b>14</b><i>Nov</i></span>
+          <span><h3>Taste the Tamar</h3><p>Exeter Showgrounds, TAS - 11:30am</p></span>
+          <span class="tix">Tickets</span>
+        </a>
+
+        <a class="event" data-end="2026-11-15T23:59:00+11:00" target="_blank" rel="noopener"
+           href="https://whiskyabbey.au">
+          <span class="date"><b>14</b><i>Nov</i></span>
+          <span><h3>Whisky Abbey 2026</h3><p>The Timber Yard, Port Melbourne - 14 to 15 Nov</p></span>
+          <span class="tix">Tickets</span>
+        </a>
+
+        <a class="event" data-end="2026-11-21T21:30:00+11:00" target="_blank" rel="noopener"
+           href="https://www.eventbrite.com.au/e/tamar-ridge-x-turner-stillhouse-tickets-2003746611053?utm_id=97760_v0_s00_e0_tv3">
+          <span class="date"><b>21</b><i>Nov</i></span>
+          <span><h3>Tamar Ridge x Turner Stillhouse Dinner</h3><p>Tamar Ridge Cellar Door, Rosevears - 6pm</p></span>
+          <span class="tix">Tickets</span>
+        </a>
+
+      </div>
+    </details>
+
+    <p class="label">Our Spirits</p>
+    <a class="btn" href="https://turnerstillhouse.com/" target="_blank" rel="noopener">
+      <span>Turner Stillhouse</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="btn" href="https://turnerstillhouse.com/our-spirits/rosevears/" target="_blank" rel="noopener">
+      <span>Rosevears Whisky</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="btn" href="https://turnerstillhouse.com/our-spirits/three-cuts-gin-vodka/" target="_blank" rel="noopener">
+      <span>Three Cuts Gin</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="btn" href="https://turnerstillhouse.com/cut-above-gin-club/" target="_blank" rel="noopener">
+      <span>Cut Above Gin Club</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <p class="label">Experiences</p>
+    <a class="btn" href="https://tamarridge.rezdy.com/596770/wine-spirit-cheese-tour" target="_blank" rel="noopener">
+      <span>Wine, Spirits &amp; Cheese Tour</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="btn" href="https://turnerstillhouse.com/shop/experience/fill-your-own-whisky-experience/" target="_blank" rel="noopener">
+      <span>Fill Your Own Whisky</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <p class="label">Stay in the Loop</p>
+    <a class="btn ghost" href="https://turnerstillhouse.com/subscribe-2/" target="_blank" rel="noopener">
+      <span>Join our Mailing List</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </nav>
+
+  <div class="social">
+    <a href="https://www.instagram.com/turnerstillhouse" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.6 9.9 2.6 10.3 2.6 12s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.2-8.3a1.1 1.1 0 11-2.3 0 1.1 1.1 0 012.3 0z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/turnerstillhouse" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21.9v-8.1h2.7l.4-3.2h-3.1V8.6c0-.9.3-1.5 1.6-1.5h1.7V4.2c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.6v3.2h2.7v8.1h3.2z"/></svg>
+    </a>
+  </div>
+
+  <footer>Turner Stillhouse - Rosevears, Tasmania<br>Please enjoy responsibly. 18+ only.</footer>
+</main>
+
+<script>
+  // Hide events once they've finished; hide the whole accordion if nothing is upcoming.
+  (function () {
+    var now = Date.now();
+    var list = document.getElementById('event-list');
+    var events = Array.prototype.slice.call(list.querySelectorAll('.event'));
+    var live = events.filter(function (el) {
+      var end = Date.parse(el.getAttribute('data-end'));
+      if (!isNaN(end) && end < now) { el.remove(); return false; }
+      return true;
+    });
+    live.sort(function (a, b) { return Date.parse(a.dataset.end) - Date.parse(b.dataset.end); })
+        .forEach(function (el) { list.appendChild(el); });
+    document.getElementById('event-count').textContent = live.length;
+    if (!live.length) document.getElementById('events').remove();
+  })();
+</script>
+</body>
+</html>
