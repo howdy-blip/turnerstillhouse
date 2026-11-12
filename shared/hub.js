@@ -45,7 +45,7 @@ var EVENTS = [
 var PROMOS = [
   {
     id: "black-friday",
-    start: "2026-11-12T09:00:00+11:00",
+    start: "2026-11-16T09:00:00+11:00",
     end:   "2026-11-30T23:59:59+11:00",
     html:
       '<p class="kicker">Black Friday</p>' +
