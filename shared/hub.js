@@ -38,6 +38,13 @@ var EVENTS = [
     start: "2026-11-21T18:00:00+11:00",
     end:   "2026-11-21T21:30:00+11:00",
     url:   "https://www.eventbrite.com.au/e/tamar-ridge-x-turner-stillhouse-tickets-2003746611053?utm_id=97760_v0_s00_e0_tv3"
+  },
+  {
+    title: "Three Cuts Gin MasterClass - Festival of Roses",
+    where: "Woolmers Estate, Longford - 22 Nov, 11am or 2pm",
+    start: "2026-11-22T11:00:00+11:00",
+    end:   "2026-11-22T16:00:00+11:00",
+    url:   "https://www.woolmers.com.au/whats-on/festival-of-roses/"
   }
 ];
 
