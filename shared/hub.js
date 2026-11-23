@@ -38,8 +38,38 @@ var EVENTS = [
     start: "2026-11-22T11:00:00+11:00",
     end:   "2026-11-22T16:00:00+11:00",
     url:   "https://www.woolmers.com.au/whats-on/festival-of-roses/"
+  },
+  {
+    title: "BeerFest Launceston",
+    where: "Launceston - 30 to 31 Dec",
+    tag:   "We're a stallholder",
+    start: "2026-12-30T12:00:00+11:00",
+    end:   "2026-12-31T23:59:00+11:00",
+    url:   "https://www.eventbrite.com.au/e/launceston-beerfest-nye-30-31-december-tickets-1999969747352"
+  },
+  {
+    title: "Festivale Launceston",
+    where: "City Park, Launceston - 29 to 31 Jan",
+    tag:   "We're a stallholder",
+    start: "2027-01-29T12:00:00+11:00",
+    end:   "2027-01-31T23:59:00+11:00",
+    url:   "https://www.festivale.com.au/tickets/"
   }
 ];
+
+/* TAMAR SESSIONS: monthly live music + food at Tamar Ridge.
+   Each date hides itself once that session finishes. Add new dates here. */
+var SESSIONS = {
+  where: "Tamar Ridge, Rosevears",
+  time:  "12pm - 4pm",
+  dates: [
+    { start: "2026-12-05T12:00:00+11:00", end: "2026-12-05T16:00:00+11:00" },
+    { start: "2027-01-23T12:00:00+11:00", end: "2027-01-23T16:00:00+11:00" },
+    { start: "2027-02-27T12:00:00+11:00", end: "2027-02-27T16:00:00+11:00" },
+    { start: "2027-03-20T12:00:00+11:00", end: "2027-03-20T16:00:00+11:00" },
+    { start: "2027-04-24T12:00:00+10:00", end: "2027-04-24T16:00:00+10:00" }
+  ]
+};
 
 /* PROMOS: shown only between "start" and "end". */
 var PROMOS = [
@@ -83,7 +113,8 @@ var PROMOS = [
       var d = new Date(e.start);
       return '<a class="event" href="' + esc(e.url) + '" target="_blank" rel="noopener">' +
         '<span class="date"><b>' + part(d, { day: "numeric" }) + '</b><i>' + part(d, { month: "short" }) + '</i></span>' +
-        '<span><h3>' + esc(e.title) + '</h3><p>' + esc(e.where) + '</p></span>' +
+        '<span>' + (e.tag ? '<em class="ev-tag">' + esc(e.tag) + '</em>' : '') +
+        '<h3>' + esc(e.title) + '</h3><p>' + esc(e.where) + '</p></span>' +
         '<span class="tix">Tickets</span></a>';
     }).join("");
     el.outerHTML = '<details class="box events"' + (el.hasAttribute("data-open") ? " open" : "") + '><summary><span>' +
@@ -98,6 +129,28 @@ var PROMOS = [
     if (html) el.outerHTML = html; else el.remove();
   }
 
+  function renderSessions(el) {
+    var left = SESSIONS.dates.filter(function (s) { return Date.parse(s.end) >= now; })
+                             .sort(function (a, b) { return Date.parse(a.start) - Date.parse(b.start); });
+    if (!left.length) { el.remove(); return; }
+    var next = new Date(left[0].start);
+    var chips = left.map(function (s, i) {
+      var d = new Date(s.start);
+      return '<li' + (i === 0 ? ' class="next"' : '') + '><span class="date"><b>' + part(d, { day: "numeric" }) +
+        '</b><i>' + part(d, { month: "short" }) + '</i></span></li>';
+    }).join("");
+    el.outerHTML = '<section class="box promo sessions" id="tamar-sessions">' +
+      '<p class="kicker">Tamar Ridge x Turner Stillhouse</p>' +
+      '<h2>Tamar <span class="hl">Sessions</span></h2>' +
+      '<p class="lede">Live music, a food truck and drinks from us and Tamar Ridge. One Saturday a month, ' +
+        esc(SESSIONS.time) + ' at ' + esc(SESSIONS.where) + '.</p>' +
+      '<p class="sess-next">Next up: <b>' + part(next, { weekday: "long", day: "numeric", month: "long" }) + '</b></p>' +
+      '<ul class="sess-dates" aria-label="Upcoming Tamar Sessions dates">' + chips + '</ul>' +
+      '<p class="sign">Pull up a chair, the Tamar Valley is pouring.</p>' +
+      '</section>';
+  }
+
+  document.querySelectorAll('[data-hub="sessions"]').forEach(renderSessions);
   document.querySelectorAll('[data-hub="events"]').forEach(renderEvents);
   document.querySelectorAll('[data-hub="promos"]').forEach(renderPromos);
 
