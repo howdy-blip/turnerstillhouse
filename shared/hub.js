@@ -62,6 +62,7 @@ var EVENTS = [
 var SESSIONS = {
   where: "Tamar Ridge, Rosevears",
   time:  "12pm - 4pm",
+  directions: "https://www.google.com/maps/place/Tamar+Ridge+%26+PIRIE+Cellar+Door/data=!4m2!3m1!1s0x0:0xec1bee997ac589f7?sa=X&ved=1t:2428&ictx=111",
   dates: [
     { start: "2026-12-05T12:00:00+11:00", end: "2026-12-05T16:00:00+11:00" },
     { start: "2027-01-23T12:00:00+11:00", end: "2027-01-23T16:00:00+11:00" },
@@ -146,6 +147,7 @@ var PROMOS = [
         esc(SESSIONS.time) + ' at ' + esc(SESSIONS.where) + '.</p>' +
       '<p class="sess-next">Next up: <b>' + part(next, { weekday: "long", day: "numeric", month: "long" }) + '</b></p>' +
       '<ul class="sess-dates" aria-label="Upcoming Tamar Sessions dates">' + chips + '</ul>' +
+      '<a class="btn ghost" href="' + esc(SESSIONS.directions) + '" target="_blank" rel="noopener"><span>Get Directions</span>' + ARROW + '</a>' +
       '<p class="sign">Pull up a chair, the Tamar Valley is pouring.</p>' +
       '</section>';
   }
